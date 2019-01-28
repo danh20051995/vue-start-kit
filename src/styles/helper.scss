@@ -1,0 +1,80 @@
+/**
+* File name: C:\Training\vue-start-kit\src\styles\helper.scss
+* Created by Visual studio code
+* User: Danh Le / danh.danh20051995@gmail.com
+* Date: 2019-01-28 14:46:09
+*/
+
+pre {
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 24px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.flex-0-0 {
+  flex-grow: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.flex-1-1-auto {
+  flex-grow: 1 !important;
+  flex-shrink: 1 !important;
+  flex-basis: auto !important;
+}
+
+.flex-grow-0 {
+  flex-grow: 0 !important;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0 !important;
+}
+
+.flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+.flex-shrink-1 {
+  flex-shrink: 1 !important;
+}
+
+.flex-basis-auto {
+  flex-basis: auto !important;
+}
+
+.flex-auto {
+  flex: 0 1 auto !important;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
+}

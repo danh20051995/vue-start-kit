@@ -34,8 +34,15 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
+      // 'vue$': 'vue/dist/vue.runtime.esm.js',
+      // '@global': path.join(__dirname, '../../api/app/global')
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '@utils': resolve('src/utils'),
+      '@layouts': resolve('src/layouts'),
+      '@modules': resolve('src/modules'),
+      '@plugins': resolve('src/plugins'),
+      '@middleware': resolve('src/middleware'),
     }
   },
   module: {

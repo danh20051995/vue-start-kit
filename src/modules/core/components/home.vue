@@ -1,6 +1,10 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="home-page">
+    <img src="@/assets/logo.png">
+
+    <h1>Vue start kit</h1>
+    <router-link :to="{ name: 'todo_list' }">Go demo todo list.</router-link>
+
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -45,6 +49,7 @@
         </a>
       </li>
     </ul>
+
     <h2>Ecosystem</h2>
     <ul>
       <li>
@@ -85,17 +90,26 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  name: 'home-page',
+
+  notifyTitle: 'Home',
+
+  created () {
+    this.successHandle('Welcome!')
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.home-page {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
 h1, h2 {
   font-weight: normal;
 }

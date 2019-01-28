@@ -1,0 +1,20 @@
+/**
+* File name: C:\Training\vue-start-kit\src\styles\app.scss
+* Created by Visual studio code
+* User: Danh Le / danh.danh20051995@gmail.com
+* Date: 2019-01-28 09:54:26
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+#app {
+  min-height: 100vh;
+}
