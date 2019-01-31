@@ -1,5 +1,5 @@
 /**
-* File name: c:\Training\vue-start-kit\src\plugins\index.js
+* File name: vue-start-kit\src\plugins\index.js
 * Created by Visual studio code
 * User: Danh Le / danh.danh20051995@gmail.com
 * Date: 2019-01-28 09:54:43
@@ -25,6 +25,9 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 /* vue-quill-editor */
+
+/* Require bootstrap */
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.use(VueCookie)
 Vue.use(VeeValidate, { fieldsBagName: 'formFields' })

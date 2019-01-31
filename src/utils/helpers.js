@@ -1,5 +1,5 @@
 /**
-* File name: c:\Training\vue-start-kit\src\utils\helpers.js
+* File name: vue-start-kit\src\utils\helpers.js
 * Created by Visual studio code
 * User: Danh Le / danh.danh20051995@gmail.com
 * Date: 2019-01-28 11:19:22
@@ -86,8 +86,26 @@ const apiErrorMessage = response => {
 }
 /* vuex store and notify */
 
+/* utils */
+/**
+ * Generate not duplicate base on module name
+ * @param {Number} length
+ * @return {String}
+ */
+function randomString (length) {
+  length = Number(length) ? Number(length) : 10
+  let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let string = ''
+  for (let i = 0; i < length; i++) {
+    string += letters[ Math.floor(Math.random() * letters.length) ]
+  }
+  return string
+}
+/* utils */
+
 export {
   tempDay,
+  randomString,
   sleep,
   isArray,
   isObject,
@@ -108,6 +126,7 @@ export {
 
 export default {
   tempDay,
+  randomString,
   sleep,
   isArray,
   isObject,

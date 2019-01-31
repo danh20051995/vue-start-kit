@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="d-flex flex-column">
     <Header/>
-    <div class="flex-1-1-auto">
+    <div id="app-content" class="flex-1-1-auto">
       <router-view/>
     </div>
     <Footer/>

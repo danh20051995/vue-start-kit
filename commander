@@ -4,7 +4,116 @@
 * User: Danh Le / danh.danh20051995@gmail.com
 * Date: 2019-01-31 10:10:56
 */
-
+const fs = require('fs')
+const util = require('util')
+const prompt = require('prompt')
+const request = require('request')
 const program = require('commander')
+const packageJson = require('./package.json')
+const status = require('./commands/status')
 
-console.log('Commander: ', program)
+// Turn off colors when non-interactive
+const colors = require('colors')
+colors.mode = process.stdout.isTTY ? colors.mode : 'none'
+
+// Initialize cli options
+program
+  .version(packageJson.version)
+  .usage('<command> [options]')
+  .option('-d, --debug', 'show debug info')
+
+// Initialize prompt
+program.prompt = prompt
+program.prompt.message = ''
+program.prompt.delimiter = ''
+program.prompt.colors = false
+program.LOG_PATH = process.env.HOME + '/commander.log'
+
+// Setup logging and messaging
+let logMessages = []
+program.log = (function (debugMode) {
+  return function _log (logEntry, noPrint) {
+    logMessages.push(logEntry)
+    if (!noPrint && debugMode) {
+      console.log('--debug-- '.cyan + logEntry)
+    }
+  }
+})(process.argv.indexOf('--debug') >= 0)
+
+program.successMessage = function successMessage () {
+  var msg = util.format.apply(this, arguments)
+  program.log('Success: ' + msg, true)
+  console.log(msg.green)
+}
+
+program.warningMessage = function successMessage () {
+  var msg = util.format.apply(this, arguments)
+  program.log('Warning: ' + msg, true)
+  console.log(msg.yellow)
+}
+
+program.errorMessage = function errorMessage () {
+  var msg = util.format.apply(this, arguments)
+  program.log('Error: ' + msg, true)
+  console.log(msg.red)
+}
+
+program.handleError = function handleError (err, exitCode) {
+  if (err) {
+    if (err.message) {
+      program.errorMessage(err.message)
+    } else {
+      program.errorMessage(err)
+    }
+  }
+
+  console.log('For more information see: ' + program.LOG_PATH)
+
+  fs.writeFileSync(program.LOG_PATH, logMessages.join('\n') + '\n')
+
+  process.exit(exitCode || 1)
+}
+
+// Create request wrapper
+program.request = function (opts, next) {
+  if (program.debug) {
+    program.log('REQUEST: '.bold + JSON.stringify(opts, null, 2))
+  } else {
+    program.log(opts.uri)
+  }
+  status.start()
+  return request(opts, function (err, res, body) {
+    status.stop()
+    if (err) {
+      if (program.debug) {
+        program.errorMessage(err.message)
+      }
+      return next(err, res, body)
+    } else {
+      if (program.debug) {
+        program.log('RESPONSE: '.bold + JSON.stringify(res.headers, null, 2))
+        program.log('BODY: '.bold + JSON.stringify(res.body, null, 2))
+      }
+      return next(err, res, body)
+    }
+  })
+}
+
+program.on('*', function () {
+  console.log('Unknown Command: ' + program.args.join(' '))
+  program.help()
+})
+
+/* Init run command */
+program.run = function run () {
+  require('./commands')(program)
+
+  // Wait 1 second before running the application code.
+  setTimeout(function () {
+    /* Process Commands */
+    program.parse(process.argv)
+  }, 1000)
+}
+
+/* run command */
+program.run()
