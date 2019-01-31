@@ -38,21 +38,21 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     ├── assets      # static content
     ├── layouts     # app layout components
     ├── middleware  # vue-router a simple middleware
-    ├── modules     # vue-router a simple middleware
-    |   ├── core    # core module, where setting up vue-router, vuex
-    |   |   ├── components  # app simple component (home, 404, 403)
-    |   |   ├── store       # register vuex - store
-    |   |   ├── router.js   # register vue-router
-    |   |   └── service.js  # abstractions for making API requests
-    |   |
-    |   ├── todo    # todo module [demo]
-    |   |   ├── components  # module components
-    |   |   ├── store       # module store
-    |   |   ├── router.js   # module router
-    |   |   └── service.js  # module service
-    |   |
-    |   └── ...
-    |
+    ├── modules     # app modules
+    │   ├── core    # core module, where setting up vue-router, vuex
+    │   │   ├── components  # app simple component (home, 404, 403)
+    │   │   ├── store       # register vuex - store
+    │   │   ├── router.js   # register vue-router
+    │   │   └── service.js  # abstractions for making API requests
+    │   │
+    │   ├── todo    # todo module [demo]
+    │   │   ├── components  # module components
+    │   │   ├── store       # module store
+    │   │   ├── router.js   # module router
+    │   │   └── service.js  # module service
+    │   │
+    │   └── ...
+    │
     ├── plugins     # vue plugins install location
     ├── styles      # global - helper style
     └── utils       # utility functions
