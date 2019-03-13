@@ -20,14 +20,19 @@ colors.mode = process.stdout.isTTY ? colors.mode : 'none'
 program
   .version(packageJson.version)
   .usage('<command> [options]')
-  .option('-d, --debug', 'show debug info')
+  .option('--debug', 'Show debug info')
+  .option('--name <name>', 'Module name')
+  .option('--no-store', 'Without vuex store')
+  .option('--no-router', 'Without vue-router')
+  .option('--no-service', 'Without API services')
+  .option('--no-component', 'Without components')
 
 // Initialize prompt
 program.prompt = prompt
 program.prompt.message = ''
 program.prompt.delimiter = ''
 program.prompt.colors = false
-program.LOG_PATH = process.env.HOME + '/commander.log'
+program.LOG_PATH = __dirname + '/commander.log'
 
 // Setup logging and messaging
 let logMessages = []

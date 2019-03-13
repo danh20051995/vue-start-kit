@@ -44,27 +44,64 @@ function getModuleName (program) {
   })
 }
 
-const createModule = async program => {
-  let moduleName = ''
-  do {
-    moduleName = await getModuleName(program)
-  } while (!moduleName.match(/^[a-zA-Z]*$/))
+const createModule = async (moduleName, program) => {
+  /* Input module name */
+  if (typeof moduleName !== 'string' || !moduleName) {
+    moduleName = ''
+  }
 
-  console.log(moduleName)
-  /* */
+  while (!moduleName || !moduleName.match(/^[a-zA-Z][a-zA-Z0-9'-]*$/)) {
+    moduleName = await getModuleName(program)
+  }
+  /* ====================== */
+
+  console.log('moduleName: ', moduleName)
+  console.log('ModuleName: ', moduleName.replace(/[A-Z]/g, '-$&').replace(/^-|-$/g, '').toLowerCase())
+  console.log('module-name: ', )
+  console.log('Module name: ', )
+
+  /* Create module dir */
+  console.log('Create module dir')
+  /* ====================== */
+
+  /* Module store */
+  if (program.store) {
+    console.log('Generate module store.')
+  }
+  /* ====================== */
+
+  /* Module router */
+  if (program.router) {
+    console.log('Generate module router.')
+  }
+  /* ====================== */
+
+  /* Module service */
+  if (program.service) {
+    console.log('Generate module service.')
+  }
+  /* ====================== */
+
+  /* Module service */
+  if (program.component) {
+    console.log('Generate module component.')
+  }
+  /* ====================== */
+
   return moduleName
 }
 
 module.exports = program => {
   program
-    .command('createModule')
+    .command('createModule [name]')
     .description('Create new vue module')
-    .action(async () => {
+    .action(async name => {
       try {
         program.successMessage('Start create module.')
-        await createModule(program)
+        await createModule(name || program.name, program)
         program.successMessage('Create module successfully.')
       } catch (error) {
+        console.log(JSON.stringify(error))
         console.log(error)
       }
       process.exit()
